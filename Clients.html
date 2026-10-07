@@ -1,0 +1,301 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clients - Hope Funeral Services</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f4f4;
+}
+
+header{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+nav{
+    background:#222;
+    text-align:center;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-weight:bold;
+}
+
+section{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    box-sizing:border-box;
+}
+
+.button{
+    background:black;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:black;
+    color:white;
+}
+
+footer{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+.selected{
+    background-color:yellow;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>HOPE FUNERAL SERVICES</h1>
+    <p>Client Management</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="clients.html">Clients</a>
+    <a href="funeral.html">Funeral Services</a>
+    <a href="payments.html">Payments</a>
+    <a href="contact.html">Contact Us</a>
+</nav>
+
+<section>
+
+    <h2>CLIENT REGISTRATION</h2>
+
+    <label>Client ID</label>
+    <input type="text" id="clientID">
+
+    <label>Client Name</label>
+    <input type="text" id="clientName">
+
+    <label>Contact Number</label>
+    <input type="text" id="contactNumber">
+
+    <button class="button" onclick="addClient()">ADD</button>
+    <button class="button" onclick="updateClient()">UPDATE</button>
+    <button class="button" onclick="deleteClient()">DELETE</button>
+    <button class="button" onclick="searchClient()">SEARCH</button>
+    <button class="button" onclick="clearForm()">CLEAR</button>
+
+</section>
+
+<section>
+
+<h2>CLIENT RECORDS</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Client ID</th>
+<th>Name</th>
+<th>Contact Number</th>
+</tr>
+</thead>
+
+<tbody id="clientTable">
+
+<tr onclick="selectRow(this)">
+<td>1</td>
+<td>John Mokoena</td>
+<td>0712345678</td>
+</tr>
+
+<tr onclick="selectRow(this)">
+<td>2</td>
+<td>Thabo Mokoena</td>
+<td>0723456789</td>
+</tr>
+
+<tr onclick="selectRow(this)">
+<td>3</td>
+<td>Maria Dlamini</td>
+<td>0734567890</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<footer>
+    <p>Contact: 0712345678 | Email: info@hopefuneral.co.za</p>
+    <p>&copy; 2026 Hope Funeral Services</p>
+</footer>
+
+<script>
+
+let selectedRow = null;
+
+function addClient(){
+
+    let id = document.getElementById("clientID").value;
+    let name = document.getElementById("clientName").value;
+    let contact = document.getElementById("contactNumber").value;
+
+    if(id==="" || name==="" || contact===""){
+        alert("Fill in all fields");
+        return;
+    }
+
+    let table = document.getElementById("clientTable");
+
+    let row = table.insertRow();
+
+    row.onclick = function(){
+        selectRow(this);
+    };
+
+    row.insertCell(0).innerHTML = id;
+    row.insertCell(1).innerHTML = name;
+    row.insertCell(2).innerHTML = contact;
+
+    clearForm();
+
+    alert("Client Added Successfully");
+}
+
+function selectRow(row){
+
+    selectedRow = row;
+
+    document.getElementById("clientID").value =
+    row.cells[0].innerHTML;
+
+    document.getElementById("clientName").value =
+    row.cells[1].innerHTML;
+
+    document.getElementById("contactNumber").value =
+    row.cells[2].innerHTML;
+}
+
+function updateClient(){
+
+    if(selectedRow == null){
+        alert("Select a client first");
+        return;
+    }
+
+    selectedRow.cells[0].innerHTML =
+    document.getElementById("clientID").value;
+
+    selectedRow.cells[1].innerHTML =
+    document.getElementById("clientName").value;
+
+    selectedRow.cells[2].innerHTML =
+    document.getElementById("contactNumber").value;
+
+    alert("Client Updated Successfully");
+
+    clearForm();
+}
+
+function deleteClient(){
+
+    if(selectedRow == null){
+        alert("Select a client first");
+        return;
+    }
+
+    selectedRow.remove();
+
+    selectedRow = null;
+
+    clearForm();
+
+    alert("Client Deleted Successfully");
+}
+
+function searchClient(){
+
+    let searchID =
+    document.getElementById("clientID").value;
+
+    let table =
+    document.getElementById("clientTable");
+
+    let rows =
+    table.getElementsByTagName("tr");
+
+    let found = false;
+
+    for(let i=0;i<rows.length;i++){
+
+        rows[i].style.backgroundColor = "";
+
+        if(rows[i].cells[0].innerHTML === searchID){
+
+            rows[i].style.backgroundColor = "yellow";
+
+            found = true;
+
+            selectRow(rows[i]);
+        }
+    }
+
+    if(!found){
+        alert("Client Not Found");
+    }
+}
+
+function clearForm(){
+
+    document.getElementById("clientID").value = "";
+    document.getElementById("clientName").value = "";
+    document.getElementById("contactNumber").value = "";
+}
+
+</script>
+
+</body>
+</html>

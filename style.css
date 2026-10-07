@@ -1,0 +1,161 @@
+/* BODY */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* HEADER */
+header {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* NAVIGATION */
+nav {
+    background-color: #1a1a1a;
+    text-align: center;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: gold;
+}
+
+/* MAIN */
+main {
+    padding: 20px;
+}
+
+/* SECTIONS */
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;}
+
+    /* HOME PAGE */
+.home-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.welcome,
+.home-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.home-image {
+    background-color: #eeeeee;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* SERVICES */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service-box {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #cccccc;
+}
+
+/* FORMS */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* BUTTONS */
+.button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #333333;
+}
+
+/* TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #000000;
+    color: white;
+}
+
+/* TOTAL PAYMENTS */
+.total-box {
+    text-align: center;
+    background-color: #eeeeee;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.home-pic {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto 15px auto;
+}
+
+
+

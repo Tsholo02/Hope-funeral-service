@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Hope Funeral Services</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f4f4;
+}
+
+header{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+nav{
+    background:#222;
+    text-align:center;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-weight:bold;
+}
+
+section{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    box-sizing:border-box;
+}
+
+.button{
+    background:black;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+.button:hover{
+    background:#333;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:black;
+    color:white;
+}
+
+footer{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>HOPE FUNERAL SERVICES</h1>
+    <p>Contact Us</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="clients.html">Clients</a>
+    <a href="funeral.html">Funeral Services</a>
+    <a href="payments.html">Payments</a>
+    <a href="contact.html">Contact Us</a>
+</nav>
+
+<section>
+
+<h2>CONTACT INFORMATION</h2>
+
+<p><strong>Phone:</strong> 0712345678</p>
+
+<p><strong>Email:</strong> info@hopefuneral.co.za</p>
+
+<p><strong>Address:</strong> 123 Main Street, Pretoria, South Africa</p>
+
+<p><strong>Office Hours:</strong> Monday - Friday, 08:00 - 17:00</p>
+
+</section>
+
+<section>
+
+<h2>SEND US A MESSAGE</h2>
+
+<label>Full Name</label>
+<input type="text" id="fullName">
+
+<label>Email Address</label>
+<input type="email" id="email">
+
+<label>Subject</label>
+<input type="text" id="subject">
+
+<label>Message</label>
+<textarea id="message" rows="5"></textarea>
+
+<button class="button" onclick="sendMessage()">
+SEND MESSAGE
+</button>
+
+</section>
+
+<section>
+
+<h2>MESSAGES RECEIVED</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Subject</th>
+<th>Message</th>
+</tr>
+</thead>
+
+<tbody id="messageTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<footer>
+
+<p>
+Contact: 0712345678 |
+Email: info@hopefuneral.co.za
+</p>
+
+<p>
+&copy; 2026 Hope Funeral Services
+</p>
+
+</footer>
+
+<script>
+
+function sendMessage(){
+
+    let name =
+    document.getElementById("fullName").value;
+
+    let email =
+    document.getElementById("email").value;
+
+    let subject =
+    document.getElementById("subject").value;
+
+    let message =
+    document.getElementById("message").value;
+
+    if(name === "" ||
+       email === "" ||
+       subject === "" ||
+       message === ""){
+
+        alert("Please complete all fields.");
+        return;
+    }
+
+    let table =
+    document.getElementById("messageTable");
+
+    let row =
+    table.insertRow();
+
+    row.insertCell(0).innerHTML = name;
+    row.insertCell(1).innerHTML = email;
+    row.insertCell(2).innerHTML = subject;
+    row.insertCell(3).innerHTML = message;
+
+    alert("Message sent successfully!");
+
+    clearForm();
+}
+
+function clearForm(){
+
+    document.getElementById("fullName").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("subject").value = "";
+    document.getElementById("message").value = "";
+}
+
+</script>
+
+</body>
+</html>

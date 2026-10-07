@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funeral Services - Hope Funeral Services</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f4f4;
+}
+
+header{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+nav{
+    background:#222;
+    text-align:center;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-weight:bold;
+}
+
+section{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    box-sizing:border-box;
+}
+
+.button{
+    background:black;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:black;
+    color:white;
+}
+
+footer{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>HOPE FUNERAL SERVICES</h1>
+    <p>Funeral Service Management</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="clients.html">Clients</a>
+    <a href="funeral.html">Funeral Services</a>
+    <a href="payments.html">Payments</a>
+    <a href="contact.html">Contact Us</a>
+</nav>
+
+<section>
+
+<h2>FUNERAL SERVICE BOOKING</h2>
+
+<label>Service ID</label>
+<input type="text" id="serviceID">
+
+<label>Client ID</label>
+<input type="text" id="clientID">
+
+<label>Service Type</label>
+
+<select id="serviceType">
+    <option value="">Select Service</option>
+    <option>Basic</option>
+    <option>Standard</option>
+    <option>Premium</option>
+</select>
+
+<label>Date Booked</label>
+<input type="date" id="dateBooked">
+
+<label>Price</label>
+<input type="number" id="price">
+
+<button class="button" onclick="addService()">ADD</button>
+<button class="button" onclick="updateService()">UPDATE</button>
+<button class="button" onclick="deleteService()">DELETE</button>
+<button class="button" onclick="searchService()">SEARCH</button>
+<button class="button" onclick="clearForm()">CLEAR</button>
+
+</section>
+
+<section>
+
+<h2>FUNERAL SERVICE RECORDS</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Service ID</th>
+<th>Client ID</th>
+<th>Service Type</th>
+<th>Date Booked</th>
+<th>Price</th>
+</tr>
+</thead>
+
+<tbody id="serviceTable">
+
+<tr onclick="selectRow(this)">
+<td>1</td>
+<td>1</td>
+<td>Basic</td>
+<td>10/08/2026</td>
+<td>R3000</td>
+</tr>
+
+<tr onclick="selectRow(this)">
+<td>2</td>
+<td>2</td>
+<td>Standard</td>
+<td>11/08/2026</td>
+<td>R6000</td>
+</tr>
+
+<tr onclick="selectRow(this)">
+<td>3</td>
+<td>3</td>
+<td>Premium</td>
+<td>12/08/2026</td>
+<td>R10000</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<footer>
+<p>Contact: 0712345678 | Email: info@hopefuneral.co.za</p>
+<p>&copy; 2026 Hope Funeral Services</p>
+</footer>
+
+<script>
+
+let selectedRow = null;
+
+function addService(){
+
+    let serviceID = document.getElementById("serviceID").value;
+    let clientID = document.getElementById("clientID").value;
+    let serviceType = document.getElementById("serviceType").value;
+    let dateBooked = document.getElementById("dateBooked").value;
+    let price = document.getElementById("price").value;
+
+    if(serviceID==="" || clientID==="" || serviceType==="" || dateBooked==="" || price===""){
+        alert("Fill in all fields");
+        return;
+    }
+
+    let table = document.getElementById("serviceTable");
+
+    let row = table.insertRow();
+
+    row.onclick = function(){
+        selectRow(this);
+    };
+
+    row.insertCell(0).innerHTML = serviceID;
+    row.insertCell(1).innerHTML = clientID;
+    row.insertCell(2).innerHTML = serviceType;
+    row.insertCell(3).innerHTML = dateBooked;
+    row.insertCell(4).innerHTML = "R" + price;
+
+    alert("Funeral Service Added Successfully");
+
+    clearForm();
+}
+
+function selectRow(row){
+
+    selectedRow = row;
+
+    document.getElementById("serviceID").value =
+    row.cells[0].innerHTML;
+
+    document.getElementById("clientID").value =
+    row.cells[1].innerHTML;
+
+    document.getElementById("serviceType").value =
+    row.cells[2].innerHTML;
+
+    document.getElementById("dateBooked").value =
+    row.cells[3].innerHTML;
+
+    document.getElementById("price").value =
+    row.cells[4].innerHTML.replace("R","");
+}
+
+function updateService(){
+
+    if(selectedRow == null){
+        alert("Select a service first");
+        return;
+    }
+
+    selectedRow.cells[0].innerHTML =
+    document.getElementById("serviceID").value;
+
+    selectedRow.cells[1].innerHTML =
+    document.getElementById("clientID").value;
+
+    selectedRow.cells[2].innerHTML =
+    document.getElementById("serviceType").value;
+
+    selectedRow.cells[3].innerHTML =
+    document.getElementById("dateBooked").value;
+
+    selectedRow.cells[4].innerHTML =
+    "R" + document.getElementById("price").value;
+
+    alert("Service Updated Successfully");
+
+    clearForm();
+}
+
+function deleteService(){
+
+    if(selectedRow == null){
+        alert("Select a service first");
+        return;
+    }
+
+    selectedRow.remove();
+
+    selectedRow = null;
+
+    clearForm();
+
+    alert("Service Deleted Successfully");
+}
+
+function searchService(){
+
+    let searchID =
+    document.getElementById("serviceID").value;
+
+    let rows =
+    document.getElementById("serviceTable")
+    .getElementsByTagName("tr");
+
+    let found = false;
+
+    for(let i=0; i<rows.length; i++){
+
+        rows[i].style.backgroundColor = "";
+
+        if(rows[i].cells[0].innerHTML === searchID){
+
+            rows[i].style.backgroundColor = "yellow";
+
+            selectRow(rows[i]);
+
+            found = true;
+        }
+    }
+
+    if(!found){
+        alert("Service Not Found");
+    }
+}
+
+function clearForm(){
+
+    document.getElementById("serviceID").value = "";
+    document.getElementById("clientID").value = "";
+    document.getElementById("serviceType").value = "";
+    document.getElementById("dateBooked").value = "";
+    document.getElementById("price").value = "";
+
+    selectedRow = null;
+}
+
+</script>
+
+</body>
+</html>
